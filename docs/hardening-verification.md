@@ -24,7 +24,9 @@ the README, ICD and live interface.
 
 The full local Debug suite passes 32/32 CTest entries. The seven live-scenario
 checks also pass, cppcheck passes, and the source-bound trace gate verifies all 20
-requirements. Hosted Debug/Release verification is pending the first push.
+requirements. GitHub Ubuntu Debug and Release also passed all 32 tests, 7 scenarios, cppcheck
+and the source-bound trace gate in [the first green hosted run](https://github.com/zxcv616/kestrel/actions/runs/40754440100),
+commit 9166539. The Actions page records subsequent commits separately.
 The current source-bound inspection records replace the earlier single-file
 inspection baseline; older reports remain historical.
 

@@ -11,7 +11,7 @@ def main():
     parser.add_argument('--flight-port', type=int, default=5000)
     parser.add_argument('--ground-port', type=int, default=5001)
     parser.add_argument('--seconds', type=float, default=11)
-    parser.add_argument('--argument', type=int, default=0, help='Mode 1/2, HK period in milliseconds, or fault ID 1..9 (test flight only)')
+    parser.add_argument('--argument', type=int, default=0, help='Mode 1/2, HK period in milliseconds, or fault ID 1..10 (test flight only)')
     parser.add_argument('--log-directory', default=None)
     args = parser.parse_args()
     with GroundLink(args.flight_port, args.ground_port, args.log_directory) as link:

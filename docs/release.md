@@ -6,11 +6,9 @@ resolves the pinned FreeRTOS and Unity commits on first configure; network acces
 is required. A copied clean source tree is supported without generated artifacts.
 
 ```sh
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
-cmake --build build --parallel 2
-ctest --test-dir build --output-on-failure --output-junit results.xml
-python3 tools/release_check.py --build build --output build/release
-python3 tools/trace.py --milestone M5 --junit build/results.xml
+git clone https://github.com/zxcv616/kestrel.git
+cd kestrel
+tools/ci.sh build Debug
 python3 tools/dashboard.py serve --run-demo
 ```
 
@@ -45,8 +43,11 @@ Inspection JSON records bind to SHA256 hashes of reviewed source and evidence.
 Source edits invalidate affected records. Perform the review again before
 refreshing hashes; never regenerate pass records solely to satisfy the gate.
 
-Remaining release condition: connect an authorized GitHub repository, commit/push
-the reviewed source, then verify a hosted Actions run and reproduce from that
-commit. Local/container results are not hosted CI. No hosted site publication is
-required or performed. POSIX timing is measured behavior, not a hardware deadline
-guarantee; watchdog protection assumes Mode, Watchdog and scheduler are healthy.
+GitHub Actions verifies a fresh checkout on every push and pull request in Debug
+and Release. Each job builds with warnings as errors, runs CTest and live scenarios,
+runs cppcheck, and binds source/report hashes before the trace gate. Download its
+artifacts for the exact commit's results and provenance. Private repository access
+is required; public publication and a demo GIF remain separate release work.
+No hosted site publication is required or performed. POSIX timing is measured
+behavior, not a hardware deadline guarantee. Mode-stall detection is available in
+HK; independent hardware watchdog reset remains phase 2.

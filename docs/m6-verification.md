@@ -1,9 +1,9 @@
 # M6 live scenario verification
 
-M6 extends the laptop simulator with fixed, repeatable scenarios. Verification is
-in progress; no new flight behavior or packet contract is introduced. The original
+M6 extends the laptop simulator with fixed, repeatable scenarios. Seven scenario integration checks pass in the retained M6 reports and were rerun
+successfully during hardening; no new flight behavior or packet contract is introduced. The original
 20 flight requirements remain the baseline; scenario acceptance adds integration
-coverage without relabeling M5's pending hosted-CI condition.
+coverage without relabeling M5's separate public-release condition.
 
 Scenarios: low battery (15%), critical battery (5%), over-temperature (61 C), and
 Telemetry task stall. Each starts a fresh test flight, enters NOMINAL, injects for

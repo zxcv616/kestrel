@@ -3,14 +3,14 @@
   "subtitle": "CubeSat flight software",
   "currentMilestone": "M7",
   "hostedCI": {
-    "status": "pending",
-    "detail": "GitHub Actions verification pending first push to zxcv616/kestrel."
+    "status": "passed",
+    "detail": "GitHub Actions Debug and Release passed build, 32 CTest checks, 7 scenarios, cppcheck and source-bound trace. https://github.com/zxcv616/kestrel/actions"
   },
   "milestones": [
     {
       "id": "M0",
       "name": "Foundation",
-      "state": "active",
+      "state": "complete",
       "summary": "A reproducible foundation, with real tasks exchanging verified messages.",
       "deliverables": [
         "Pinned FreeRTOS + C11 build",
@@ -18,7 +18,7 @@
         "Debug and Release checks",
         "Requirements and interface contracts"
       ],
-      "gate": "Local checks passed. Hosted GitHub Actions run pending.",
+      "gate": "Local foundation and hosted GitHub Debug/Release checks pass.",
       "gui": "Runtime demo, verification evidence, requirements register and design explorer."
     },
     {
@@ -88,7 +88,7 @@
         "Recorded mission demo",
         "Release documentation"
       ],
-      "gate": "28/28 suites pass on macOS and Ubuntu Debug/Release; Linux static analysis passes; all 20 requirements have source-bound evidence. Hosted CI and published-checkout reproduction remain pending.",
+      "gate": "All 20 clarified requirements and hosted fresh-checkout Debug/Release CI pass. Repository is private; public release and demo GIF remain separate work.",
       "gui": "Recorded mission playback with time scrubbing, reviewed inspection details, full 20-row verification matrix and downloadable evidence ZIP with SHA256 manifest."
     },
     {
@@ -108,7 +108,7 @@
     {
       "id": "M7",
       "name": "Simulator hardening",
-      "state": "active",
+      "state": "complete",
       "summary": "Modular tasks, transport isolation and observable health.",
       "deliverables": [
         "One file per task and UDP HAL",
@@ -116,7 +116,7 @@
         "Mode stall detection and dropped-event HK",
         "ATT purge and source-bound hosted CI"
       ],
-      "gate": "Fresh integration tests and hosted Debug/Release CI required.",
+      "gate": "32 CTest checks, 7 scenarios, cppcheck and all 20 requirements pass locally and on GitHub Debug/Release; reports bind to source hashes.",
       "gui": "Received-HK stack marks, watchdog stall flags and dropped-event counter; Mode stall test."
     }
   ],
@@ -172,7 +172,7 @@
       "priority": "Highest",
       "cadence": "Every 1 s",
       "owns": "Task check-in windows",
-      "detail": "Reads independent per-task check-in queues. Three missed one-second windows trigger a stall fault. Fresh check-ins clear the fault; SAFE persists until ground recovery.",
+      "detail": "Reads check-ins and stack marks from all six tasks. Three missed windows flag a stall. Mode and Telemetry receive independent copies; Mode stalls are detectable but permanent Mode/Watchdog failure requires hardware reset.",
       "milestone": "M4"
     }
   ],
@@ -211,7 +211,7 @@
       "name": "HK",
       "apid": "0x010",
       "bytes": 49,
-      "payload": 20,
+      "payload": 37,
       "purpose": "Housekeeping",
       "fields": "Mode \u00b7 sensors \u00b7 counters \u00b7 dropped events \u00b7 watchdog flags \u00b7 six stack marks"
     },

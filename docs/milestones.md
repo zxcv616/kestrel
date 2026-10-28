@@ -1,7 +1,7 @@
 # Delivery milestones
 
 M0 implementation is present; see [verification](m0-verification.md) for checks
-actually executed and the hosted-CI limitation. M1 packet codecs are verified; see [M1 evidence](m1-verification.md). M2 ground-link evidence is recorded in [M2 verification](m2-verification.md). M3 flight modes are implemented; see [M3 evidence](m3-verification.md). M4 fault recovery is implemented; see [M4 evidence](m4-verification.md). M6 live scenarios extend the laptop simulator. M5 local release evidence is implemented; hosted CI and published-checkout reproduction remain pending. A milestone is
+actually executed and the hosted-CI limitation. M1 packet codecs are verified; see [M1 evidence](m1-verification.md). M2 ground-link evidence is recorded in [M2 verification](m2-verification.md). M3 flight modes are implemented; see [M3 evidence](m3-verification.md). M4 fault recovery is implemented; see [M4 evidence](m4-verification.md). M6 live scenarios extend the laptop simulator. M5 local release evidence is implemented; hosted CI and private Git-checkout reproduction now pass; public release remains pending. A milestone is
 complete only when its acceptance evidence exists, not when code is merely added.
 
 | Milestone | Delivery | Acceptance |
@@ -19,8 +19,9 @@ complete only when its acceptance evidence exists, not when code is merely added
 Static-memory, queue-ownership, production/test separation and warning/static-analysis
 inspections are recorded. The ground station demo, playback and verification
 bundle are implemented. Local verification is documented in [M5 evidence](m5-verification.md).
-M5 stays active until hosted CI and reproduction from the published commit succeed.
-No GitHub destination has been supplied; publication remains separately requested.
+Hosted Debug/Release CI and fresh private Git-checkout reproduction pass at
+https://github.com/zxcv616/kestrel. M5 remains active for the original public-release
+and demo-GIF deliverables; public visibility has not been requested.
 
 Every milestone includes its GUI capability. The user chose further laptop simulation after the MVP; hardware is deferred.
 

@@ -28,13 +28,11 @@ DEFAULT_OUTPUT = ROOT / "output/dashboard/local"
 HOST_LABEL = "macOS" if platform.system() == "Darwin" else platform.system()
 DEFAULT_REPORTS = [
     (f"{HOST_LABEL} · Debug", ROOT / "build/results.xml"),
-    (f"{HOST_LABEL} · Release", ROOT / "build-release/results.xml"),
-    ("Ubuntu · Debug", ROOT / "build/verification/ubuntu-m5-debug.xml"),
-    ("Ubuntu · Release", ROOT / "build/verification/ubuntu-m5-release.xml"),
+    ("GitHub Ubuntu · Debug", ROOT / "build/hosted/Debug/results.xml"),
+    ("GitHub Ubuntu · Release", ROOT / "build/hosted/Release/results.xml"),
     (f"{HOST_LABEL} · Debug scenarios", ROOT / "build/scenario-results.xml"),
-    (f"{HOST_LABEL} · Release scenarios", ROOT / "build-release/scenario-results.xml"),
-    ("Ubuntu · Debug scenarios", ROOT / "build/verification/ubuntu-m6-debug.xml"),
-    ("Ubuntu · Release scenarios", ROOT / "build/verification/ubuntu-m6-release.xml"),
+    ("GitHub Ubuntu · Debug scenarios", ROOT / "build/hosted/Debug/scenario-results.xml"),
+    ("GitHub Ubuntu · Release scenarios", ROOT / "build/hosted/Release/scenario-results.xml"),
 ]
 
 
