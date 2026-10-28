@@ -8,7 +8,7 @@ ROOT=Path(__file__).resolve().parents[1]
 def digest(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def source_hashes(root=ROOT):
     paths=[]
-    for folder in ('fsw','ground','tests','tools','dashboard/web','.github'):
+    for folder in ('fsw','ground','tests','tools','dashboard','.github','docs'):
         paths.extend(p for p in (root/folder).rglob('*') if p.is_file() and '__pycache__' not in p.parts and p.suffix not in ('.pyc','.pyo'))
     paths.extend(root/p for p in ('CMakeLists.txt','docs/requirements.md','docs/design.md','docs/icd.md'))
     return {str(p.relative_to(root)):digest(p) for p in sorted(paths) if p.is_file()}

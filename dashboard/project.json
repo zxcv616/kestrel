@@ -303,7 +303,7 @@
     },
     {
       "title": "Hardening verification",
-      "file": "docs/hardening-verification.md"
+      "file": "hardening-verification.md"
     }
   ]
 }
