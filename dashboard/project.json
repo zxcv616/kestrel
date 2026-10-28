@@ -1,0 +1,309 @@
+{
+  "name": "Kestrel",
+  "subtitle": "CubeSat flight software",
+  "currentMilestone": "M7",
+  "hostedCI": {
+    "status": "pending",
+    "detail": "GitHub Actions verification pending first push to zxcv616/kestrel."
+  },
+  "milestones": [
+    {
+      "id": "M0",
+      "name": "Foundation",
+      "state": "active",
+      "summary": "A reproducible foundation, with real tasks exchanging verified messages.",
+      "deliverables": [
+        "Pinned FreeRTOS + C11 build",
+        "Two tasks communicating through a static queue",
+        "Debug and Release checks",
+        "Requirements and interface contracts"
+      ],
+      "gate": "Local checks passed. Hosted GitHub Actions run pending.",
+      "gui": "Runtime demo, verification evidence, requirements register and design explorer."
+    },
+    {
+      "id": "M1",
+      "name": "Packet protocol",
+      "state": "complete",
+      "summary": "C and Python agree on every byte sent over the link.",
+      "deliverables": [
+        "CCSDS headers and payload codecs",
+        "CRC-16/CCITT-FALSE",
+        "Shared known-good vectors",
+        "Sequence rollover and malformed packet tests"
+      ],
+      "gate": "C/Python byte agreement, malformed packets and per-APID rollover verified: FSW-005 and FSW-006.",
+      "gui": "Byte inspector, CRC results and shared packet vectors."
+    },
+    {
+      "id": "M2",
+      "name": "Ground link",
+      "state": "complete",
+      "summary": "The first complete command and telemetry round trip.",
+      "deliverables": [
+        "Local UDP transport",
+        "Boot into SAFE",
+        "NOOP and REQUEST_HK",
+        "ACK deadlines and invalid-command handling"
+      ],
+      "gate": "Boot SAFE, malformed-command rejection and ACK deadline verified on macOS and Ubuntu. FSW-001/007/008 now pass.",
+      "gui": "Local start/stop, real SAFE housekeeping, NOOP / REQUEST_HK controls, ACK history and a recorded hosted session."
+    },
+    {
+      "id": "M3",
+      "name": "Flight modes",
+      "state": "complete",
+      "summary": "Nominal operation with explicit, testable transition rules.",
+      "deliverables": [
+        "Mode state machine",
+        "Command restrictions",
+        "Configurable HK and ATT telemetry",
+        "Event and CSV logging"
+      ],
+      "gate": "SAFE \u2194 NOMINAL, HK rate boundaries, counter resets, SAFE permissions and ATT scheduling verified. M3 uses a labeled healthy prerequisite fixture; sensor/fault integration follows in M4.",
+      "gui": "Live mode controls and diagram, measured HK/ATT interval plots, mode events, reset controls and complete session CSV download."
+    },
+    {
+      "id": "M4",
+      "name": "Fault recovery",
+      "state": "complete",
+      "summary": "Detect a fault, enter the right mode, and recover deliberately.",
+      "deliverables": [
+        "Simulated sensors",
+        "Watchdog check-ins",
+        "Battery hysteresis and thermal protection",
+        "Timed test-only fault injections"
+      ],
+      "gate": "26/26 suites pass on macOS and Ubuntu Debug/Release; Linux static analysis passes. All nine injections, exact policy boundaries, expiry, event edges and recovery deadlines verified. 15/20 requirements have evidence.",
+      "gui": "Live simulated sensors, fault-test build controls, automatic LOW_POWER/SAFE protection, watchdog check-ins and an internal recovery timeline."
+    },
+    {
+      "id": "M5",
+      "name": "Verified release",
+      "state": "active",
+      "summary": "Local release verification, recorded mission playback and evidence exports.",
+      "deliverables": [
+        "All 20 requirements verified",
+        "Production / test build checks",
+        "Recorded mission demo",
+        "Release documentation"
+      ],
+      "gate": "28/28 suites pass on macOS and Ubuntu Debug/Release; Linux static analysis passes; all 20 requirements have source-bound evidence. Hosted CI and published-checkout reproduction remain pending.",
+      "gui": "Recorded mission playback with time scrubbing, reviewed inspection details, full 20-row verification matrix and downloadable evidence ZIP with SHA256 manifest."
+    },
+    {
+      "id": "M6",
+      "name": "Live scenarios",
+      "state": "complete",
+      "summary": "Run repeatable live fault scenarios with measured step results.",
+      "deliverables": [
+        "Four fixed live scenarios",
+        "Measured protection and recovery checks",
+        "Cancellation and exclusive command control",
+        "Downloadable per-run reports"
+      ],
+      "gate": "7/7 scenario integration checks pass on macOS and Ubuntu with Debug/Release flight binaries. Four scenarios, cancellation, overlap guards, command/report failures and cleanup verified. Original 20-requirement baseline still passes; M5 hosted CI remains pending.",
+      "gui": "Run/Cancel controls, live step results and report download within the simulator."
+    },
+    {
+      "id": "M7",
+      "name": "Simulator hardening",
+      "state": "active",
+      "summary": "Modular tasks, transport isolation and observable health.",
+      "deliverables": [
+        "One file per task and UDP HAL",
+        "Stack checking and six HK high-water marks",
+        "Mode stall detection and dropped-event HK",
+        "ATT purge and source-bound hosted CI"
+      ],
+      "gate": "Fresh integration tests and hosted Debug/Release CI required.",
+      "gui": "Received-HK stack marks, watchdog stall flags and dropped-event counter; Mode stall test."
+    }
+  ],
+  "tasks": [
+    {
+      "id": "link",
+      "name": "Link",
+      "priority": "High",
+      "cadence": "Packet-driven",
+      "owns": "UDP socket and fixed I/O buffers",
+      "detail": "Moves command datagrams to Command and serialized telemetry to the ground. Nonblocking I/O keeps outgoing ACKs and check-ins responsive.",
+      "milestone": "M2"
+    },
+    {
+      "id": "command",
+      "name": "Command",
+      "priority": "Medium",
+      "cadence": "Command-driven",
+      "owns": "Validation, command counts, ACK decisions",
+      "detail": "Validates packets, obtains Mode decisions by copied queue messages, owns command counters and sends committed ACK descriptors to Telemetry.",
+      "milestone": "M2"
+    },
+    {
+      "id": "mode",
+      "name": "Mode",
+      "priority": "High",
+      "cadence": "Event-driven",
+      "owns": "Current mode and active faults",
+      "detail": "Owns modes and active faults; processes real sensor and watchdog messages before ground requests. SAFE recovery requires fresh, healthy prerequisites.",
+      "milestone": "M3"
+    },
+    {
+      "id": "telemetry",
+      "name": "Telemetry",
+      "priority": "Low",
+      "cadence": "HK / ATT deadlines",
+      "owns": "Packet serialization and per-APID sequences",
+      "detail": "Serializes HK, ATT, events and ACKs. Sends actual simulated sensor values; stale/invalid samples use sentinels. Events retain occurrence timestamps during outages.",
+      "milestone": "M2"
+    },
+    {
+      "id": "sensors",
+      "name": "Sensors",
+      "priority": "Low",
+      "cadence": "Every 100 ms",
+      "owns": "Simulated sensor state",
+      "detail": "Samples simulated battery, temperature and stationary angular rates every 100 ms. Fixed-duration test injections change samples or pause this task.",
+      "milestone": "M4"
+    },
+    {
+      "id": "watchdog",
+      "name": "Watchdog",
+      "priority": "Highest",
+      "cadence": "Every 1 s",
+      "owns": "Task check-in windows",
+      "detail": "Reads independent per-task check-in queues. Three missed one-second windows trigger a stall fault. Fresh check-ins clear the fault; SAFE persists until ground recovery.",
+      "milestone": "M4"
+    }
+  ],
+  "modes": [
+    {
+      "id": "BOOT",
+      "hk": "None",
+      "att": "Off",
+      "commands": "None",
+      "detail": "Initialization only. Enter SAFE within 2 seconds."
+    },
+    {
+      "id": "SAFE",
+      "hk": "Every 10 s",
+      "att": "Off",
+      "commands": "NOOP, SET_MODE, REQUEST_HK, RESET_COUNTERS",
+      "detail": "Ground-controlled recovery. Automatic sensor recovery never leaves SAFE."
+    },
+    {
+      "id": "NOMINAL",
+      "hk": "Default 1 Hz",
+      "att": "1 Hz",
+      "commands": "All valid commands",
+      "detail": "Normal operation. HK period is configurable from 250 to 10,000 ms."
+    },
+    {
+      "id": "LOW_POWER",
+      "hk": "Every 5 s",
+      "att": "Off",
+      "commands": "All valid commands",
+      "detail": "Enter from NOMINAL below 20% battery. Recover at 30% if no critical fault is active."
+    }
+  ],
+  "packets": [
+    {
+      "name": "HK",
+      "apid": "0x010",
+      "bytes": 49,
+      "payload": 20,
+      "purpose": "Housekeeping",
+      "fields": "Mode \u00b7 sensors \u00b7 counters \u00b7 dropped events \u00b7 watchdog flags \u00b7 six stack marks"
+    },
+    {
+      "name": "ATT",
+      "apid": "0x011",
+      "bytes": 18,
+      "payload": 6,
+      "purpose": "Attitude rates",
+      "fields": "Angular rates x, y, z \u00b7 signed millidegrees/second"
+    },
+    {
+      "name": "EVENT",
+      "apid": "0x012",
+      "bytes": 23,
+      "payload": 11,
+      "purpose": "Mode and fault events",
+      "fields": "Event ID \u00b7 severity \u00b7 two signed parameters"
+    },
+    {
+      "name": "ACK",
+      "apid": "0x013",
+      "bytes": 15,
+      "payload": 3,
+      "purpose": "Command acknowledgement",
+      "fields": "Echoed command sequence \u00b7 status"
+    },
+    {
+      "name": "CMD",
+      "apid": "0x100",
+      "bytes": 15,
+      "payload": 3,
+      "purpose": "Ground command (SET_HK_RATE example)",
+      "fields": "Function code \u00b7 arguments (variable by command)"
+    }
+  ],
+  "documents": [
+    {
+      "file": "requirements.md",
+      "title": "Requirements register"
+    },
+    {
+      "file": "design.md",
+      "title": "Design decisions"
+    },
+    {
+      "file": "icd.md",
+      "title": "Packet contract"
+    },
+    {
+      "file": "milestones.md",
+      "title": "Delivery milestones"
+    },
+    {
+      "file": "m0-verification.md",
+      "title": "M0 verification record"
+    },
+    {
+      "file": "dashboard.md",
+      "title": "Dashboard maintenance"
+    },
+    {
+      "file": "m1-verification.md",
+      "title": "M1 verification record"
+    },
+    {
+      "file": "m2-verification.md",
+      "title": "M2 verification record"
+    },
+    {
+      "file": "m3-verification.md",
+      "title": "M3 verification record"
+    },
+    {
+      "file": "m4-verification.md",
+      "title": "M4 verification record"
+    },
+    {
+      "file": "m5-verification.md",
+      "title": "M5 release verification"
+    },
+    {
+      "file": "release.md",
+      "title": "Reproduce the release"
+    },
+    {
+      "file": "m6-verification.md",
+      "title": "M6 scenario verification"
+    },
+    {
+      "title": "Hardening verification",
+      "file": "docs/hardening-verification.md"
+    }
+  ]
+}

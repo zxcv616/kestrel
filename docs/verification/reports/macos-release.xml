@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Darwin-cc"
+	tests="28"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="Matthews-MacBook-Pro-311.local"
+	time="113"
+	timestamp="2026-10-27T21:05:49"
+	>
+	<testcase name="test_fsw_001_boot_safe" classname="test_fsw_001_boot_safe" time="0.0475672" status="run">
+		<properties/>
+		<system-out>{"bootSafeMs": 6.268, "mode": "SAFE"}
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_007_invalid_commands" classname="test_fsw_007_invalid_commands" time="0.285554" status="run">
+		<properties/>
+		<system-out>36 invalid/unsupported datagrams rejected once; counters and SAFE preserved.
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_008_ack_deadline" classname="test_fsw_008_ack_deadline" time="0.406407" status="run">
+		<properties/>
+		<system-out>{"commands": 166, "burst": 64, "maxRoundTripMs": 11.095}
+</system-out>
+	</testcase>
+	<testcase name="m2_safe_housekeeping" classname="m2_safe_housekeeping" time="10.042" status="run">
+		<properties/>
+		<system-out>{"periodicHKTimeMs": 10000, "immediateHKTimeMs": 208}
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_002_safe_exit" classname="test_fsw_002_safe_exit" time="0.503741" status="run">
+		<properties/>
+		<system-out>M3 safe passed
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_003_hk_timing" classname="test_fsw_003_hk_timing" time="4.24038" status="run">
+		<properties/>
+		<system-out>{"nominalHKHostIntervalsMs": [999.6847909933422, 999.8801250039833, 1000.2064169966616]}
+M3 timing passed
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_004_hk_rate" classname="test_fsw_004_hk_rate" time="14.0398" status="run">
+		<properties/>
+		<system-out>M3 rate passed
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_009_command_counts" classname="test_fsw_009_command_counts" time="0.0566907" status="run">
+		<properties/>
+		<system-out>M3 counts passed
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_013_safe_commands" classname="test_fsw_013_safe_commands" time="0.0670076" status="run">
+		<properties/>
+		<system-out>M3 allowlist passed
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_015_att_modes" classname="test_fsw_015_att_modes" time="5.64565" status="run">
+		<properties/>
+		<system-out>M3 att passed
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_010_battery_hysteresis" classname="test_fsw_010_battery_hysteresis" time="5.64421" status="run">
+		<properties/>
+		<system-out>{"injection": 5, "mode": 3, "transitionDelayMs": 85, "expiryMs": 5000, "events": 6, "observerDroppedEvents": 0}
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_011_critical_faults" classname="test_fsw_011_critical_faults" time="21.8294" status="run">
+		<properties/>
+		<system-out>{"injection": 6, "mode": 1, "transitionDelayMs": 84, "expiryMs": 5000, "events": 7, "observerDroppedEvents": 0}
+{"injection": 7, "mode": 1, "transitionDelayMs": 93, "expiryMs": 5000, "events": 5, "observerDroppedEvents": 0}
+{"injection": 8, "mode": 1, "transitionDelayMs": 82, "expiryMs": 5000, "events": 5, "observerDroppedEvents": 0}
+{"injection": 9, "mode": 1, "transitionDelayMs": 482, "expiryMs": 5000, "events": 5, "observerDroppedEvents": 0}
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_012_watchdog_safe" classname="test_fsw_012_watchdog_safe" time="21.9922" status="run">
+		<properties/>
+		<system-out>{"injection": 1, "mode": 1, "transitionDelayMs": 1899, "expiryMs": 5000, "events": 7, "observerDroppedEvents": 0}
+{"injection": 2, "mode": 1, "transitionDelayMs": 2791, "expiryMs": 5000, "events": 5, "observerDroppedEvents": 0}
+{"injection": 3, "mode": 1, "transitionDelayMs": 2790, "expiryMs": 5000, "events": 5, "observerDroppedEvents": 0}
+{"injection": 4, "mode": 1, "transitionDelayMs": 391, "expiryMs": 5000, "events": 7, "observerDroppedEvents": 0}
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_014_fault_events" classname="test_fsw_014_fault_events" time="10.7175" status="run">
+		<properties/>
+		<system-out>{"injection": 7, "mode": 1, "transitionDelayMs": 3, "expiryMs": 5000, "events": 5, "observerDroppedEvents": 0}
+</system-out>
+	</testcase>
+	<testcase name="m5_mission_demo" classname="m5_mission_demo" time="11.6718" status="run">
+		<properties/>
+		<system-out>{"result": "pass", "commands": 8, "packets": 29, "criticalSafeDelayMs": 95}
+</system-out>
+	</testcase>
+	<testcase name="m5_build_inspection" classname="m5_build_inspection" time="0.128326" status="run">
+		<properties/>
+		<system-out>{"inspection": "pass", "cppcheck": "not run on this host"}
+</system-out>
+	</testcase>
+	<testcase name="ground_link_and_console" classname="ground_link_and_console" time="2.22126" status="run">
+		<properties/>
+		<system-out>127.0.0.1 - - [27/Oct/2026 21:07:36] "POST /api/flight/start HTTP/1.1" 403 -
+127.0.0.1 - - [27/Oct/2026 21:07:36] "POST /api/flight/start HTTP/1.1" 403 -
+127.0.0.1 - - [27/Oct/2026 21:07:36] "POST /api/flight/stop HTTP/1.1" 403 -
+127.0.0.1 - - [27/Oct/2026 21:07:36] "POST /api/flight/stop HTTP/1.1" 403 -
+127.0.0.1 - - [27/Oct/2026 21:07:36] "POST /api/flight/noop HTTP/1.1" 403 -
+127.0.0.1 - - [27/Oct/2026 21:07:36] "POST /api/flight/noop HTTP/1.1" 403 -
+127.0.0.1 - - [27/Oct/2026 21:07:36] "POST /api/flight/request_hk HTTP/1.1" 403 -
+127.0.0.1 - - [27/Oct/2026 21:07:36] "POST /api/flight/request_hk HTTP/1.1" 403 -
+127.0.0.1 - - [27/Oct/2026 21:07:36] "POST /api/flight/nominal HTTP/1.1" 403 -
+127.0.0.1 - - [27/Oct/2026 21:07:36] "POST /api/flight/nominal HTTP/1.1" 403 -
+127.0.0.1 - - [27/Oct/2026 21:07:36] "POST /api/flight/safe HTTP/1.1" 403 -
+127.0.0.1 - - [27/Oct/2026 21:07:37] "POST /api/flight/safe HTTP/1.1" 403 -
+127.0.0.1 - - [27/Oct/2026 21:07:37] "POST /api/flight/reset_counters HTTP/1.1" 403 -
+127.0....
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="packet_inspector" classname="packet_inspector" time="0.095705" status="run">
+		<properties/>
+		<system-out>PASS: browser inspector matches 48 independent vectors
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_002_prerequisites" classname="test_fsw_002_prerequisites" time="0.0114763" status="run">
+		<properties/>
+		<system-out>/Users/matthewwiecking/Desktop/kestrel/tests/unit/test_mode.c:34:prerequisites:PASS
+/Users/matthewwiecking/Desktop/kestrel/tests/unit/test_mode.c:34:thresholds:PASS
+
+-----------------------
+2 Tests 0 Failures 0 Ignored 
+OK
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_005_packets_c" classname="test_fsw_005_packets_c" time="0.00361175" status="run">
+		<properties/>
+		<system-out>/Users/matthewwiecking/Desktop/kestrel/tests/unit/test_packet.c:102:test_crc_reference:PASS
+/Users/matthewwiecking/Desktop/kestrel/tests/unit/test_packet.c:103:test_shared_valid_vectors:PASS
+/Users/matthewwiecking/Desktop/kestrel/tests/unit/test_packet.c:104:test_shared_invalid_vectors:PASS
+/Users/matthewwiecking/Desktop/kestrel/tests/unit/test_packet.c:105:test_output_bounds_and_arguments:PASS
+
+-----------------------
+4 Tests 0 Failures 0 Ignored 
+OK
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_006_sequence_wrap_c" classname="test_fsw_006_sequence_wrap_c" time="0.002837" status="run">
+		<properties/>
+		<system-out>/Users/matthewwiecking/Desktop/kestrel/tests/unit/test_packet.c:100:test_all_apid_sequences:PASS
+
+-----------------------
+1 Tests 0 Failures 0 Ignored 
+OK
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_005_packets_python" classname="test_fsw_005_packets_python" time="0.0291283" status="run">
+		<properties/>
+		<system-out>test_crc_check_value_and_empty (__main__.Packets.test_crc_check_value_and_empty) ... ok
+test_independent_vectors_both_directions (__main__.Packets.test_independent_vectors_both_directions) ... ok
+test_invalid_vectors_and_error_precedence (__main__.Packets.test_invalid_vectors_and_error_precedence) ... ok
+test_wire_ranges_reject_without_truncation (__main__.Packets.test_wire_ranges_reject_without_truncation) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.000s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_006_sequence_wrap_python" classname="test_fsw_006_sequence_wrap_python" time="0.0446652" status="run">
+		<properties/>
+		<system-out>test_independent_apids_wrap_at_16384 (__main__.SequenceTests.test_independent_apids_wrap_at_16384) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.016s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="test_fsw_005_packets_cross_language" classname="test_fsw_005_packets_cross_language" time="0.0398613" status="run">
+		<properties/>
+		<system-out>PASS: 1148 C/Python comparisons, including independent fixtures and seeded mutations
+</system-out>
+	</testcase>
+	<testcase name="m0_queue_round_trip" classname="m0_queue_round_trip" time="0.523102" status="run">
+		<properties/>
+		<system-out>PASS: 20 ordered queue messages, verified payloads, advancing ticks, clean exit
+</system-out>
+	</testcase>
+	<testcase name="m0_trace_checker" classname="m0_trace_checker" time="0.0683043" status="run">
+		<properties/>
+		<system-out>...........
+----------------------------------------------------------------------
+Ran 11 tests in 0.008s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="dashboard_integrity" classname="dashboard_integrity" time="3.13447" status="run">
+		<properties/>
+		<system-out>Console exported to /private/var/folders/_9/n709tmf551199ztczvq918mc0000gn/T/tmpnu5uo3vp/export
+.127.0.0.1 - - [27/Oct/2026 21:07:40] "POST /api/run-m0 HTTP/1.1" 403 -
+.127.0.0.1 - - [27/Oct/2026 21:07:41] "GET /api/state HTTP/1.1" 200 -
+.127.0.0.1 - - [27/Oct/2026 21:07:41] "GET /api/state HTTP/1.1" 200 -
+.127.0.0.1 - - [27/Oct/2026 21:07:42] "POST /api/run-m0 HTTP/1.1" 403 -
+.127.0.0.1 - - [27/Oct/2026 21:07:42] "POST /api/run-m0 HTTP/1.1" 200 -
+127.0.0.1 - - [27/Oct/2026 21:07:42] "POST /api/run-m0 HTTP/1.1" 409 -
+......
+----------------------------------------------------------------------
+Ran 11 tests in 3.063s
+
+OK
+</system-out>
+	</testcase>
+	<testcase name="m0_requirements_registry" classname="m0_requirements_registry" time="0.0318962" status="run">
+		<properties/>
+		<system-out>FSW-001 PENDING due=M2 Test
+FSW-002 PENDING due=M3 Test
+FSW-003 PENDING due=M3 Test
+FSW-004 PENDING due=M3 Test
+FSW-005 PENDING due=M1 Test
+FSW-006 PENDING due=M1 Test
+FSW-007 PENDING due=M2 Test
+FSW-008 PENDING due=M2 Test
+FSW-009 PENDING due=M3 Test
+FSW-010 PENDING due=M4 Test
+FSW-011 PENDING due=M4 Test
+FSW-012 PENDING due=M4 Test
+FSW-013 PENDING due=M3 Test
+FSW-014 PENDING due=M4 Test
+FSW-015 PENDING due=M3 Test
+FSW-016 PENDING due=M5 Inspection
+FSW-017 PENDING due=M5 Inspection
+FSW-018 PENDING due=M5 Inspection
+FSW-019 PENDING due=M5 Inspection
+FSW-020 PENDING due=M5 Demo
+Evidence: 0/20 verified. M0 gate: PASS
+</system-out>
+	</testcase>
+</testsuite>

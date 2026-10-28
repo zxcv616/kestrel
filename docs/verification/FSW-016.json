@@ -1,0 +1,34 @@
+{
+  "id": "FSW-016",
+  "result": "pass",
+  "reviewer": "Codex source review and automated build inspection",
+  "scope": "Modular hardening revision: reviewed flight ownership, HK revision 2 and production/test separation; fresh macOS build/static analysis and real UDP demo. Exact files bound below.",
+  "evidence": [
+    "docs/verification/hardening-inspection.md",
+    "docs/verification/hardening-build-inspection.json"
+  ],
+  "sourceHashes": {
+    "CMakeLists.txt": "ac9832fc04cca3f66ec52b1e42db24bd23e4f3f4a77e443b6491988d4f308ce2",
+    "docs/verification/hardening-build-inspection.json": "744d845ee78428d144cea1998a65fe39cec5416660127ea1b696de30781fef40",
+    "docs/verification/hardening-inspection.md": "dbcfcf0be0ffb6e2fd107c34bf32903597d5a8817b7905479705d8af1e2b6f15",
+    "fsw/FreeRTOSConfig.h": "f962a6db25157cd348e965eba35dc3f188716403eefb1c9718af55671ce4e550",
+    "fsw/include/kestrel_link.h": "9fac408577ff4e9b5921e17748ac8dc52f83b4bbc440ff05583964a36914aaf4",
+    "fsw/include/kestrel_mode.h": "ac2e099a0ef04950cca4a550cf03aa02e2bc29c36816840fc0f1fb9089caa0f4",
+    "fsw/include/kestrel_packet.h": "56d291d3d08f4b114d06018fae823e3d6fd05e465cc52a9b7bfda851a9c9671a",
+    "fsw/include/kestrel_runtime.h": "126200b947275421ff3e506a00a5c1128d9d411912c5564b433b7edf80e43132",
+    "fsw/src/ccsds/crc16.c": "d89b3f6648f68d40946badfb5e1af706be0985e5a7d0be6452de97787dd84fff",
+    "fsw/src/ccsds/packet.c": "08de72256804240e2c5ba5c749fbabbe8be1f3708e4d71c9ba454c5b979d3a5c",
+    "fsw/src/flight.c": "28d3d3ce3df1e4296740238a84cea641d46eb8bf1d007da01a16283a2ca81a91",
+    "fsw/src/hal/udp_link.c": "b31e8d908aa2735791aecfc0df65016244cd0b5edcf681cd577a73a6b4ad3a09",
+    "fsw/src/main.c": "ae83fcabd0bf3afae22a527dbb6b5ebb7d996936678e8c809e071cbe7a4fc082",
+    "fsw/src/runtime.c": "78e95542c29fb3e852cac47e805ed8cd05969e19508e8530213f1268a444cb1e",
+    "fsw/src/stack_hook.c": "365447a3f4143e52ef38770b3d924e2135feb96bbbcd5e01ede59542a66b1910",
+    "fsw/src/tasks/command.c": "52acb01123db3401f76ed8b4af5d49c096179ae124b6d74261eabd092638046c",
+    "fsw/src/tasks/link.c": "bedefc6a17867dc461657e99dedaf88822108b0fef3c752bb76cd0289f560af6",
+    "fsw/src/tasks/mode.c": "17f4c256e8454b9d4cc6ba300e72dd57700826938045064a6a48348487ba8948",
+    "fsw/src/tasks/sensors.c": "5e40db23b4b062c77370742791eb29f9059dbb84259c767fea5c1f8a6e758b24",
+    "fsw/src/tasks/telemetry.c": "860380252c3f29c9ea760cecc0bfb496f137af36441f0861bf0e725ff2180aa8",
+    "fsw/src/tasks/watchdog.c": "0345729d7e2050da480a11a2358336d3989cb3ef7124c6055572ddc1e94e0531",
+    "tools/release_check.py": "399cc488b22b4350d1438e348d8bc4ffacee4c761af52cc948abfed32d3a6d54"
+  }
+}

@@ -1,0 +1,32 @@
+name: Kestrel CI
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  posix:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Install build and analysis tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake build-essential python3 cppcheck nodejs
+      - name: Build, test flight link and codecs, analyze, and check requirements
+        run: tools/ci.sh build "${{ matrix.configuration }}"
+      - name: Retain test results and the console snapshot
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: kestrel-${{ matrix.configuration }}
+          path: |
+            build/provenance.json
+            build/results.xml
+            build/scenario-results.xml
+            build/dashboard/
+            build/release/

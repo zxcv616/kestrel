@@ -1,0 +1,377 @@
+{
+  "provenance": "Independent integer/polynomial reference; see README.md",
+  "valid": [
+    {
+      "name": "hk_nominal",
+      "apid": 16,
+      "sequence": 7,
+      "time_ms": 42000,
+      "fields": {
+        "mode": 2,
+        "uptime_s": 42,
+        "battery_mv": 3800,
+        "battery_percent": 80,
+        "temperature_centi_c": 2000,
+        "accepted": 7,
+        "rejected": 2,
+        "last_fault": 0,
+        "dropped_events": 3,
+        "task_stalled_mask": 8,
+        "stack_link": 900,
+        "stack_command": 920,
+        "stack_mode": 940,
+        "stack_telemetry": 960,
+        "stack_sensors": 980,
+        "stack_watchdog": 1000
+      },
+      "hex": "0810c007002a0000a410020000002a0ed85007d00000000700000002000000000003080384039803ac03c003d403e85866"
+    },
+    {
+      "name": "hk_unavailable",
+      "apid": 16,
+      "sequence": 16383,
+      "time_ms": 4294967295,
+      "fields": {
+        "mode": 1,
+        "uptime_s": 4294967295,
+        "battery_mv": 65535,
+        "battery_percent": 255,
+        "temperature_centi_c": -32768,
+        "accepted": 4294967295,
+        "rejected": 0,
+        "last_fault": 5,
+        "dropped_events": 3,
+        "task_stalled_mask": 8,
+        "stack_link": 900,
+        "stack_command": 920,
+        "stack_mode": 940,
+        "stack_telemetry": 960,
+        "stack_sensors": 980,
+        "stack_watchdog": 1000
+      },
+      "hex": "0810ffff002affffffff01ffffffffffffff8000ffffffff00000000000500000003080384039803ac03c003d403e88d10"
+    },
+    {
+      "name": "att_signed_limits",
+      "apid": 17,
+      "sequence": 16383,
+      "time_ms": 123456,
+      "fields": {
+        "x": -32768,
+        "y": 32767,
+        "z": -1
+      },
+      "hex": "0811ffff000b0001e24080007fffffffb160"
+    },
+    {
+      "name": "att_zero",
+      "apid": 17,
+      "sequence": 0,
+      "time_ms": 0,
+      "fields": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "hex": "0811c000000b000000000000000000003d4c"
+    },
+    {
+      "name": "event_signed_limits",
+      "apid": 18,
+      "sequence": 12,
+      "time_ms": 4294967295,
+      "fields": {
+        "id": 65535,
+        "severity": 2,
+        "parameter_1": -2147483648,
+        "parameter_2": 2147483647
+      },
+      "hex": "0812c00c0010ffffffffffff02800000007fffffff4434"
+    },
+    {
+      "name": "event_mode_change",
+      "apid": 18,
+      "sequence": 1,
+      "time_ms": 250,
+      "fields": {
+        "id": 1,
+        "severity": 0,
+        "parameter_1": 1,
+        "parameter_2": 2
+      },
+      "hex": "0812c0010010000000fa0001000000000100000002ae19"
+    },
+    {
+      "name": "ack_max_sequence",
+      "apid": 19,
+      "sequence": 2,
+      "time_ms": 800,
+      "fields": {
+        "command_sequence": 16383,
+        "status": 0
+      },
+      "hex": "0813c0020008000003203fff002f41"
+    },
+    {
+      "name": "ack_unidentifiable",
+      "apid": 19,
+      "sequence": 0,
+      "time_ms": 0,
+      "fields": {
+        "command_sequence": 65535,
+        "status": 1
+      },
+      "hex": "0813c000000800000000ffff011e81"
+    },
+    {
+      "name": "noop",
+      "apid": 256,
+      "sequence": 0,
+      "time_ms": 0,
+      "fields": {
+        "function": 0,
+        "argument": 0
+      },
+      "hex": "1900c00000060000000000967f"
+    },
+    {
+      "name": "set_mode",
+      "apid": 256,
+      "sequence": 16383,
+      "time_ms": 0,
+      "fields": {
+        "function": 1,
+        "argument": 2
+      },
+      "hex": "1900ffff0007000000000102407a"
+    },
+    {
+      "name": "reset_counters",
+      "apid": 256,
+      "sequence": 16383,
+      "time_ms": 0,
+      "fields": {
+        "function": 2,
+        "argument": 0
+      },
+      "hex": "1900ffff000600000000024e24"
+    },
+    {
+      "name": "set_hk_rate",
+      "apid": 256,
+      "sequence": 16383,
+      "time_ms": 0,
+      "fields": {
+        "function": 3,
+        "argument": 500
+      },
+      "hex": "1900ffff0008000000000301f47fae"
+    },
+    {
+      "name": "request_hk",
+      "apid": 256,
+      "sequence": 16383,
+      "time_ms": 0,
+      "fields": {
+        "function": 4,
+        "argument": 0
+      },
+      "hex": "1900ffff000600000000042ee2"
+    },
+    {
+      "name": "inject_fault",
+      "apid": 256,
+      "sequence": 16383,
+      "time_ms": 0,
+      "fields": {
+        "function": 5,
+        "argument": 9
+      },
+      "hex": "1900ffff00070000000005093dd5"
+    },
+    {
+      "name": "hk_rate_min",
+      "apid": 256,
+      "sequence": 16383,
+      "time_ms": 0,
+      "fields": {
+        "function": 3,
+        "argument": 250
+      },
+      "hex": "1900ffff0008000000000300faad51"
+    },
+    {
+      "name": "hk_rate_max",
+      "apid": 256,
+      "sequence": 16383,
+      "time_ms": 0,
+      "fields": {
+        "function": 3,
+        "argument": 10000
+      },
+      "hex": "1900ffff0008000000000327106e44"
+    }
+  ],
+  "invalid": [
+    {
+      "name": "truncated_0",
+      "hex": "",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "truncated_1",
+      "hex": "19",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "truncated_2",
+      "hex": "1900",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "truncated_3",
+      "hex": "1900c0",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "truncated_4",
+      "hex": "1900c000",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "truncated_5",
+      "hex": "1900c00000",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "truncated_6",
+      "hex": "1900c0000006",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "truncated_7",
+      "hex": "1900c000000600",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "truncated_8",
+      "hex": "1900c00000060000",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "truncated_9",
+      "hex": "1900c0000006000000",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "truncated_10",
+      "hex": "1900c000000600000000",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "truncated_11",
+      "hex": "1900c00000060000000000",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "truncated_12",
+      "hex": "1900c0000006000000000096",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "bad_crc",
+      "hex": "1900c00000060000000000967e",
+      "error": "BAD_CRC"
+    },
+    {
+      "name": "wrong_version",
+      "hex": "3900c000000600000000003c05",
+      "error": "BAD_HEADER"
+    },
+    {
+      "name": "missing_secondary_header",
+      "hex": "1100c0000006000000000034f1",
+      "error": "BAD_HEADER"
+    },
+    {
+      "name": "segmented",
+      "hex": "1900800000060000000000c9a6",
+      "error": "BAD_HEADER"
+    },
+    {
+      "name": "wrong_type",
+      "hex": "0900c00000060000000000c342",
+      "error": "BAD_HEADER"
+    },
+    {
+      "name": "unknown_apid",
+      "hex": "1901c00000060000000000f93a",
+      "error": "UNKNOWN_APID"
+    },
+    {
+      "name": "unknown_function",
+      "hex": "1900c00000060000000006f6b9",
+      "error": "UNKNOWN_FUNCTION"
+    },
+    {
+      "name": "declared_length",
+      "hex": "1900c00000070000000000d3df",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "header_before_crc",
+      "hex": "3900c00000060000000000967f",
+      "error": "BAD_HEADER"
+    },
+    {
+      "name": "trailing_byte",
+      "hex": "1900c00000060000000000967f00",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "empty_command",
+      "hex": "1900c00000050000000078a7",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "extra_noop_argument",
+      "hex": "1900c0000007000000000001343f",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "short_hk",
+      "hex": "0810c0000018000000000000000000000000000000000000000000000086b6",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "bad_mode",
+      "hex": "1900c0000007000000000103274c",
+      "error": "BAD_ARGUMENT"
+    },
+    {
+      "name": "hk_rate_below",
+      "hex": "1900c0000008000000000300f98442",
+      "error": "BAD_ARGUMENT"
+    },
+    {
+      "name": "hk_rate_above",
+      "hex": "1900c0000008000000000327116715",
+      "error": "BAD_ARGUMENT"
+    },
+    {
+      "name": "bad_fault_id",
+      "hex": "1900c0000007000000000500dbeb",
+      "error": "BAD_ARGUMENT"
+    },
+    {
+      "name": "oversized_257",
+      "hex": "1900c00000fa00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000065f7",
+      "error": "BAD_LENGTH"
+    },
+    {
+      "name": "max_256_wrong_payload",
+      "hex": "1900c00000f9000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000077a2",
+      "error": "BAD_LENGTH"
+    }
+  ]
+}

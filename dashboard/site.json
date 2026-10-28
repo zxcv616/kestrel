@@ -1,0 +1,9 @@
+{
+  "project_id": "appgprj_6ae13fca0850819181475515a704600d",
+  "url": "https://kestrel-mission-console.wiecking.chatgpt.site",
+  "checkout": "sites/kestrel-console",
+  "audience": "owner-private",
+  "version_id": "appgprj_6ae13fca0850819181475515a704600d~appgver_276625560b508191a7bb4a794418cfb4",
+  "deployment_id": "appgdep_6ae14bbf1aa88191979c430526a39b0e",
+  "source_commit": "05933acdf7b96724623be0a3f4e24b77368967b6"
+}

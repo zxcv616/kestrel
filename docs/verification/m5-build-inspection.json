@@ -1,0 +1,20 @@
+{
+  "result": "pass",
+  "recordedAt": "2026-10-28T04:09:04.799517+00:00",
+  "sourceHashes": {
+    "fsw/src/ccsds/crc16.c": "d89b3f6648f68d40946badfb5e1af706be0985e5a7d0be6452de97787dd84fff",
+    "fsw/src/ccsds/packet.c": "cae072ee92fee22186eab6ec5a8170245f1139c96d17d2cab5fd5f32a7df8108",
+    "fsw/src/flight.c": "e90eb8bccec7d519bae442c65f4ce6a5ddd5cd5c2f56b85000028884fa209acb",
+    "fsw/src/main.c": "ae83fcabd0bf3afae22a527dbb6b5ebb7d996936678e8c809e071cbe7a4fc082",
+    "fsw/FreeRTOSConfig.h": "d07e8f37dd137c3dffafa1fcb7955daa1ffb0b1018fabaf7fa608dfc72288a46",
+    "fsw/include/kestrel_mode.h": "ac2e099a0ef04950cca4a550cf03aa02e2bc29c36816840fc0f1fb9089caa0f4",
+    "fsw/include/kestrel_packet.h": "27abab0975f8743e33aa0eed8e276a6d36a4a4eefcbf52ff01ef16cb02cd3fa3"
+  },
+  "checks": [
+    "No application heap/dynamic task/queue or alternate IPC calls",
+    "Static allocation enabled; dynamic allocation and mutexes disabled",
+    "All application translation units use -Wall -Wextra -Werror",
+    "Preprocessed production excludes injection activation and observer; test includes both"
+  ],
+  "cppcheck": "pass"
+}

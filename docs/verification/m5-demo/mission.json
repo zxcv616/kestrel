@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "result": "pass",
+  "recordedAt": "2026-10-28T19:18:48.783330+00:00",
+  "source": "Actual local test flight over loopback UDP; playback never sends commands",
+  "binarySha256": "68c670be5790f13590097b2a06baf4e64c85c7a1592f5b19139e0a685a60ad54",
+  "commands": [
+    {
+      "sequence": 0,
+      "command": "noop",
+      "argument": 0,
+      "sentAt": 1793215117.424684,
+      "state": "acknowledged",
+      "status": "OK",
+      "rttMs": 2.548,
+      "ackSequence": 0
+    },
+    {
+      "sequence": 1,
+      "command": "request_hk",
+      "argument": 0,
+      "sentAt": 1793215117.427306,
+      "state": "acknowledged",
+      "status": "OK",
+      "rttMs": 2.449,
+      "ackSequence": 1
+    },
+    {
+      "sequence": 2,
+      "command": "set_mode",
+      "argument": 2,
+      "sentAt": 1793215117.429832,
+      "state": "acknowledged",
+      "status": "OK",
+      "rttMs": 2.418,
+      "ackSequence": 2
+    },
+    {
+      "sequence": 3,
+      "command": "set_hk_rate",
+      "argument": 250,
+      "sentAt": 1793215118.43467,
+      "state": "acknowledged",
+      "status": "OK",
+      "rttMs": 2.498,
+      "ackSequence": 3
+    },
+    {
+      "sequence": 4,
+      "command": "reset_counters",
+      "argument": 0,
+      "sentAt": 1793215118.4372501,
+      "state": "acknowledged",
+      "status": "OK",
+      "rttMs": 2.431,
+      "ackSequence": 4
+    },
+    {
+      "sequence": 5,
+      "command": "inject_fault",
+      "argument": 5,
+      "sentAt": 1793215118.4397628,
+      "state": "acknowledged",
+      "status": "OK",
+      "rttMs": 2.428,
+      "ackSequence": 5
+    },
+    {
+      "sequence": 6,
+      "command": "inject_fault",
+      "argument": 6,
+      "sentAt": 1793215123.5778198,
+      "state": "acknowledged",
+      "status": "OK",
+      "rttMs": 1.447,
+      "ackSequence": 6
+    },
+    {
+      "sequence": 7,
+      "command": "set_mode",
+      "argument": 2,
+      "sentAt": 1793215128.779288,
+      "state": "acknowledged",
+      "status": "OK",
+      "rttMs": 2.529,
+      "ackSequence": 7
+    }
+  ],
+  "telemetryTypes": [
+    "HK",
+    "ATT",
+    "EVENT",
+    "ACK"
+  ],
+  "loggedPackets": 28,
+  "criticalSafeDelayMs": 89,
+  "frames": [
+    {
+      "label": "Boot in SAFE",
+      "timeMs": 101,
+      "mode": 1,
+      "battery": 80,
+      "faultMask": 0,
+      "packets": 2
+    },
+    {
+      "label": "NOMINAL: HK and ATT received",
+      "timeMs": 1031,
+      "mode": 2,
+      "battery": 80,
+      "faultMask": 0,
+      "packets": 10
+    },
+    {
+      "label": "250 ms HK configured; counters reset",
+      "timeMs": 1135,
+      "mode": 2,
+      "battery": 80,
+      "faultMask": 0,
+      "packets": 12
+    },
+    {
+      "label": "Battery 15%: LOW_POWER",
+      "timeMs": 1321,
+      "mode": 3,
+      "battery": 15,
+      "faultMask": 2,
+      "packets": 16
+    },
+    {
+      "label": "Battery restored: automatic NOMINAL",
+      "timeMs": 6265,
+      "mode": 2,
+      "battery": 80,
+      "faultMask": 0,
+      "packets": 19
+    },
+    {
+      "label": "Battery 5%: SAFE",
+      "timeMs": 6466,
+      "mode": 1,
+      "battery": 5,
+      "faultMask": 6,
+      "packets": 24
+    },
+    {
+      "label": "Fault cleared: SAFE retained",
+      "timeMs": 11475,
+      "mode": 1,
+      "battery": 80,
+      "faultMask": 0,
+      "packets": 26
+    },
+    {
+      "label": "Ground recovery: NOMINAL",
+      "timeMs": 11477,
+      "mode": 2,
+      "battery": 80,
+      "faultMask": 0,
+      "packets": 28
+    },
+    {
+      "label": "Mission complete",
+      "timeMs": 11477,
+      "mode": 2,
+      "battery": 80,
+      "faultMask": 0,
+      "packets": 28
+    }
+  ]
+}
