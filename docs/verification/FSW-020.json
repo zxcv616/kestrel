@@ -2,7 +2,7 @@
   "id": "FSW-020",
   "result": "pass",
   "reviewer": "Codex automated real UDP mission and CSV round-trip checks",
-  "scope": "Modular hardening revision: reviewed flight ownership, HK revision 2 and production/test separation; fresh macOS build/static analysis and real UDP demo. Exact files bound below.",
+  "scope": "Modular hardening plus first-HK sensor-readiness revision: reviewed static allocation, copied queue ownership, production guards and unchanged packet contract; fresh local build inspection/cppcheck. Exact source and evidence hashes below; hosted CI for this working tree is not claimed.",
   "evidence": [
     "docs/verification/m5-demo/mission.json",
     "docs/verification/m5-demo/mission.csv",
@@ -28,7 +28,7 @@
     "fsw/src/tasks/link.c": "bedefc6a17867dc461657e99dedaf88822108b0fef3c752bb76cd0289f560af6",
     "fsw/src/tasks/mode.c": "17f4c256e8454b9d4cc6ba300e72dd57700826938045064a6a48348487ba8948",
     "fsw/src/tasks/sensors.c": "5e40db23b4b062c77370742791eb29f9059dbb84259c767fea5c1f8a6e758b24",
-    "fsw/src/tasks/telemetry.c": "860380252c3f29c9ea760cecc0bfb496f137af36441f0861bf0e725ff2180aa8",
+    "fsw/src/tasks/telemetry.c": "0ca0754f21f530b3daa8c825dbcba15c8bce13ca296a3b4e56261564a620bcb5",
     "fsw/src/tasks/watchdog.c": "0345729d7e2050da480a11a2358336d3989cb3ef7124c6055572ddc1e94e0531",
     "ground/ccsds.py": "471e2e23a754e460c506f8c4f0cded61dda0660812e4c1dae70ee0e603e3ae9a",
     "ground/link.py": "7ca4e3e90a2031b2a6285fe5eda2f5608f9f1cc72ba75cc5c34e4d57bb3fbf69",

@@ -2,7 +2,7 @@
   "id": "FSW-019",
   "result": "pass",
   "reviewer": "Codex source review and automated build inspection",
-  "scope": "Modular hardening revision: reviewed flight ownership, HK revision 2 and production/test separation; fresh macOS build/static analysis and real UDP demo. Exact files bound below.",
+  "scope": "Modular hardening plus first-HK sensor-readiness revision: reviewed static allocation, copied queue ownership, production guards and unchanged packet contract; fresh local build inspection/cppcheck. Exact source and evidence hashes below; hosted CI for this working tree is not claimed.",
   "evidence": [
     "docs/verification/hardening-inspection.md",
     "docs/verification/hardening-build-inspection.json",
@@ -10,9 +10,9 @@
   ],
   "sourceHashes": {
     "CMakeLists.txt": "ac9832fc04cca3f66ec52b1e42db24bd23e4f3f4a77e443b6491988d4f308ce2",
-    "docs/verification/hardening-build-inspection.json": "744d845ee78428d144cea1998a65fe39cec5416660127ea1b696de30781fef40",
+    "docs/verification/hardening-build-inspection.json": "9941bd7db0f6dd1c58ef6568a3bf76aa0f94800f6b8cb3c1361c7943d9d4b5b4",
     "docs/verification/hardening-cppcheck.txt": "cbb20bbc7d14e03fb69cb07547a9b7b266d4290d2e1922482abb906e5ef2000e",
-    "docs/verification/hardening-inspection.md": "dbcfcf0be0ffb6e2fd107c34bf32903597d5a8817b7905479705d8af1e2b6f15",
+    "docs/verification/hardening-inspection.md": "d8dfc9480cd4f295ae769c715e16652c2688cce59c824137c23420e89f5fde51",
     "fsw/FreeRTOSConfig.h": "f962a6db25157cd348e965eba35dc3f188716403eefb1c9718af55671ce4e550",
     "fsw/include/kestrel_link.h": "9fac408577ff4e9b5921e17748ac8dc52f83b4bbc440ff05583964a36914aaf4",
     "fsw/include/kestrel_mode.h": "ac2e099a0ef04950cca4a550cf03aa02e2bc29c36816840fc0f1fb9089caa0f4",
@@ -29,7 +29,7 @@
     "fsw/src/tasks/link.c": "bedefc6a17867dc461657e99dedaf88822108b0fef3c752bb76cd0289f560af6",
     "fsw/src/tasks/mode.c": "17f4c256e8454b9d4cc6ba300e72dd57700826938045064a6a48348487ba8948",
     "fsw/src/tasks/sensors.c": "5e40db23b4b062c77370742791eb29f9059dbb84259c767fea5c1f8a6e758b24",
-    "fsw/src/tasks/telemetry.c": "860380252c3f29c9ea760cecc0bfb496f137af36441f0861bf0e725ff2180aa8",
+    "fsw/src/tasks/telemetry.c": "0ca0754f21f530b3daa8c825dbcba15c8bce13ca296a3b4e56261564a620bcb5",
     "fsw/src/tasks/watchdog.c": "0345729d7e2050da480a11a2358336d3989cb3ef7124c6055572ddc1e94e0531",
     "tools/release_check.py": "399cc488b22b4350d1438e348d8bc4ffacee4c761af52cc948abfed32d3a6d54"
   }

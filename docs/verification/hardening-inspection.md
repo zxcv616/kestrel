@@ -28,3 +28,15 @@ FSW-016 through FSW-020 records bind the reviewed files with SHA256 hashes.
   System include lookup is suppressed; other enabled findings remain fatal.
 - Static checks and preprocessing supplement this review; they are not proofs
   of all future behavior. Fresh CI binds reports to source hashes and a Git commit.
+
+## First-HK readiness review
+
+Telemetry's new local `hk_started` boolean gates first HK on the existing
+fresh copied sensor snapshot. No allocations, shared state, task priorities,
+queue sizes, wire formats or production injection guards changed. The existing
+bounded decision wait and watchdog check-ins remain active while waiting.
+EVENT draining resumes after 500 ms even if sensors never initialize. Later
+sensor loss still uses existing HK sentinels. The boot test now requires valid
+battery/voltage/temperature in the first datagram and zero command counters;
+the controller test also asserts an empty TX history. Fresh build inspection
+and cppcheck passed for this revision.

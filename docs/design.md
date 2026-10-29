@@ -278,3 +278,15 @@ counter reaches received HK. This fixture is absent from production parsing.
 CI fingerprints source before tests, checks it again afterward and binds JUnit
 hashes to it. The trace gate rejects source/report changes when --provenance is
 supplied; hosted CI always supplies it. Historical reports remain historical.
+
+## First housekeeping readiness
+
+Telemetry defers its first HK until the Mode-owned sensor snapshot is valid and
+less than 500 ms old. This uses the existing copied state queue and adds only a
+local boolean; no new synchronization or allocation is introduced. Command
+processing and check-ins continue while waiting. Boot EVENT normally follows HK;
+after 500 ms, events are drained even without valid sensors, so startup sensor
+failure does not hide fault reporting. Requested/periodic HK remains gated until
+the first valid sample; subsequent sensor loss uses the existing sentinels.
+The console never issues an automatic startup REQUEST_HK. The normal first HK
+remains within the tested two-second boot limit, with zero command counters.

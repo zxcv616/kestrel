@@ -3,6 +3,8 @@ import zipfile
 import errno
 import io
 import json
+import subprocess
+import shutil
 from pathlib import Path
 import tempfile
 import threading
@@ -19,6 +21,11 @@ class SnapshotTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
+
+    def test_console_display_rules(self):
+        node = shutil.which("node") or shutil.which("nodejs")
+        self.assertIsNotNone(node, "Node is required for browser display tests")
+        subprocess.run([node, str(dashboard.ROOT / "tests/dashboard/test_console_model.cjs")], check=True)
 
     def test_absent_reports_do_not_claim_passes(self):
         snapshot = dashboard.make_snapshot([("Missing", self.root / "absent.xml")])
@@ -89,6 +96,14 @@ class LocalServerTests(unittest.TestCase):
         self.server.shutdown()
         self.server.server_close()
         self.thread.join()
+
+    def test_static_assets_are_not_cached(self):
+        for name in ("index.html", "app.js", "style.css", "mark.svg"):
+            (Path(self.temp.name) / name).write_text("test asset")
+            request=Request(self.url+"/"+name, headers={"If-Modified-Since":"Wed, 01 Jan 2020 00:00:00 GMT"})
+            with urlopen(request) as response:
+                self.assertEqual(response.headers["Cache-Control"], "no-store")
+                self.assertEqual(response.read(), b"test asset")
 
     def test_local_state_has_token_but_no_run_capability_without_binary(self):
         with urlopen(self.url + "/api/state") as response:

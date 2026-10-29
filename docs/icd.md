@@ -134,3 +134,10 @@ Entering SAFE invalidates and discards unsent ATT, including the Link retry slot
 A mode epoch prevents pre-SAFE ATT from reappearing after a rapid return to NOMINAL.
 Discarded already-serialized packets may leave ATT sequence gaps. Packets already
 submitted to the transport cannot be recalled.
+
+### First HK at startup
+
+No packet format change: the first HK is held until a fresh valid sensor sample
+is available. Later invalid sensor readings retain the established sentinels.
+Uptime is whole elapsed seconds and can legitimately be zero on the first HK.
+No ground command is required to obtain the initial housekeeping packet.

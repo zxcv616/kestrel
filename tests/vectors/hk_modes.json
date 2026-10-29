@@ -1,0 +1,105 @@
+{
+  "note": "Independent struct layout and CRC. BOOT is decoder coverage only; live BOOT emits no telemetry.",
+  "valid": [
+    {
+      "name": "hk_boot",
+      "apid": 16,
+      "sequence": 7,
+      "time_ms": 42000,
+      "fields": {
+        "mode": 0,
+        "uptime_s": 42,
+        "battery_mv": 3800,
+        "battery_percent": 80,
+        "temperature_centi_c": 2000,
+        "accepted": 7,
+        "rejected": 2,
+        "last_fault": 0,
+        "dropped_events": 3,
+        "task_stalled_mask": 8,
+        "stack_link": 900,
+        "stack_command": 920,
+        "stack_mode": 940,
+        "stack_telemetry": 960,
+        "stack_sensors": 980,
+        "stack_watchdog": 1000
+      },
+      "hex": "0810c007002a0000a410000000002a0ed85007d00000000700000002000000000003080384039803ac03c003d403e8a0d1"
+    },
+    {
+      "name": "hk_safe",
+      "apid": 16,
+      "sequence": 7,
+      "time_ms": 42000,
+      "fields": {
+        "mode": 1,
+        "uptime_s": 42,
+        "battery_mv": 3800,
+        "battery_percent": 80,
+        "temperature_centi_c": 2000,
+        "accepted": 7,
+        "rejected": 2,
+        "last_fault": 0,
+        "dropped_events": 3,
+        "task_stalled_mask": 8,
+        "stack_link": 900,
+        "stack_command": 920,
+        "stack_mode": 940,
+        "stack_telemetry": 960,
+        "stack_sensors": 980,
+        "stack_watchdog": 1000
+      },
+      "hex": "0810c007002a0000a410010000002a0ed85007d00000000700000002000000000003080384039803ac03c003d403e8549a"
+    },
+    {
+      "name": "hk_nominal",
+      "apid": 16,
+      "sequence": 7,
+      "time_ms": 42000,
+      "fields": {
+        "mode": 2,
+        "uptime_s": 42,
+        "battery_mv": 3800,
+        "battery_percent": 80,
+        "temperature_centi_c": 2000,
+        "accepted": 7,
+        "rejected": 2,
+        "last_fault": 0,
+        "dropped_events": 3,
+        "task_stalled_mask": 8,
+        "stack_link": 900,
+        "stack_command": 920,
+        "stack_mode": 940,
+        "stack_telemetry": 960,
+        "stack_sensors": 980,
+        "stack_watchdog": 1000
+      },
+      "hex": "0810c007002a0000a410020000002a0ed85007d00000000700000002000000000003080384039803ac03c003d403e85866"
+    },
+    {
+      "name": "hk_low_power",
+      "apid": 16,
+      "sequence": 7,
+      "time_ms": 42000,
+      "fields": {
+        "mode": 3,
+        "uptime_s": 42,
+        "battery_mv": 3800,
+        "battery_percent": 15,
+        "temperature_centi_c": 2000,
+        "accepted": 7,
+        "rejected": 2,
+        "last_fault": 0,
+        "dropped_events": 3,
+        "task_stalled_mask": 8,
+        "stack_link": 900,
+        "stack_command": 920,
+        "stack_mode": 940,
+        "stack_telemetry": 960,
+        "stack_sensors": 980,
+        "stack_watchdog": 1000
+      },
+      "hex": "0810c007002a0000a410030000002a0ed80f07d00000000700000002000000000003080384039803ac03c003d403e82dfa"
+    }
+  ]
+}

@@ -33,8 +33,9 @@ class Flight:
         assert self.hk.apid == 0x10 and self.hk.fields['mode'] == 1
         assert self.hk.sequence == 0 and self.hk.time_ms < 2000
         assert self.hk.fields['accepted'] == self.hk.fields['rejected'] == 0
-        assert self.hk.fields['battery_percent'] in (80, 255)
-        assert self.hk.fields['temperature_centi_c'] in (2000, -32768)
+        assert self.hk.fields['battery_percent'] == 80
+        assert self.hk.fields['temperature_centi_c'] == 2000
+        assert self.hk.fields['battery_mv'] == 3800
         assert self.boot_ms < 2000
         boot = self.receive()
         assert boot.apid == 0x12 and boot.fields['parameter_1'] == 0 and boot.fields['parameter_2'] == 1

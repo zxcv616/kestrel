@@ -181,6 +181,11 @@ class DashboardServer(ThreadingHTTPServer):
 
 
 class Handler(SimpleHTTPRequestHandler):
+    def end_headers(self):
+        # Development assets and API responses must never outlive their source.
+        self.send_header("Cache-Control", "no-store")
+        super().end_headers()
+
     def log_message(self, format_string, *args):
         # Do not log session tokens or request bodies.
         super().log_message(format_string, *args)
@@ -189,7 +194,6 @@ class Handler(SimpleHTTPRequestHandler):
         encoded = json.dumps(value).encode()
         self.send_response(status)
         self.send_header("Content-Type", "application/json")
-        self.send_header("Cache-Control", "no-store")
         self.send_header("Content-Length", str(len(encoded)))
         self.end_headers()
         self.wfile.write(encoded)
@@ -209,7 +213,6 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "text/csv")
             self.send_header("Content-Disposition", 'attachment; filename="kestrel-telemetry.csv"')
-            self.send_header("Cache-Control", "no-store")
             self.send_header("Content-Length", str(len(content)))
             self.end_headers()
             self.wfile.write(content)
@@ -222,7 +225,6 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "application/json")
             self.send_header("Content-Disposition", 'attachment; filename="kestrel-scenario.json"')
-            self.send_header("Cache-Control", "no-store")
             self.send_header("Content-Length", str(len(content)))
             self.end_headers()
             self.wfile.write(content)

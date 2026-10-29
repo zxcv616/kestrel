@@ -17,6 +17,15 @@ class Packets(unittest.TestCase):
                 self.assertEqual(encode(packet).hex(),v['hex'])
                 self.assertEqual(decode(bytes.fromhex(v['hex'])),packet)
 
+    def test_housekeeping_fields_in_each_mode(self):
+        vectors=json.loads((ROOT / 'tests/vectors/hk_modes.json').read_text())['valid']
+        for vector in vectors:
+            with self.subTest(mode=vector['name']):
+                packet=decode(bytes.fromhex(vector['hex']))
+                self.assertEqual(packet.fields,vector['fields'])
+                self.assertEqual(packet.time_ms,42000)
+                self.assertEqual(packet.fields['uptime_s'],42)
+
     def test_invalid_vectors_and_error_precedence(self):
         for v in VECTORS['invalid']:
             with self.subTest(vector=v['name']):

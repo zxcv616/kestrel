@@ -3,8 +3,8 @@
   "subtitle": "CubeSat flight software",
   "currentMilestone": "M7",
   "hostedCI": {
-    "status": "passed",
-    "detail": "GitHub Actions Debug and Release passed build, 32 CTest checks, 7 scenarios, cppcheck and source-bound trace. https://github.com/zxcv616/kestrel/actions"
+    "status": "pending",
+    "detail": "Final public-release revision awaiting fresh GitHub Debug/Release results; earlier baseline passed."
   },
   "milestones": [
     {
@@ -88,8 +88,8 @@
         "Recorded mission demo",
         "Release documentation"
       ],
-      "gate": "All 20 clarified requirements and hosted fresh-checkout Debug/Release CI pass. Repository is private; public release and demo GIF remain separate work.",
-      "gui": "Recorded mission playback with time scrubbing, reviewed inspection details, full 20-row verification matrix and downloadable evidence ZIP with SHA256 manifest."
+      "gate": "All 20 clarified requirements pass locally. Public-release preparation includes the 30-second live GIF and updated README; final hosted verification and public visibility are pending.",
+      "gui": "Main and Diagnostics console; a separate 30-second live GIF demonstrates boot, Command-stall protection and operator recovery. Recorded playback source remains archived."
     },
     {
       "id": "M6",
@@ -102,7 +102,7 @@
         "Cancellation and exclusive command control",
         "Downloadable per-run reports"
       ],
-      "gate": "7/7 scenario integration checks pass on macOS and Ubuntu with Debug/Release flight binaries. Four scenarios, cancellation, overlap guards, command/report failures and cleanup verified. Original 20-requirement baseline still passes; M5 hosted CI remains pending.",
+      "gate": "7/7 scenario integration checks pass on macOS and Ubuntu with Debug/Release flight binaries. Four scenarios, cancellation, overlap guards, command/report failures and cleanup verified. Original 20-requirement baseline still passes.",
       "gui": "Run/Cancel controls, live step results and report download within the simulator."
     },
     {
@@ -117,7 +117,7 @@
         "ATT purge and source-bound hosted CI"
       ],
       "gate": "32 CTest checks, 7 scenarios, cppcheck and all 20 requirements pass locally and on GitHub Debug/Release; reports bind to source hashes.",
-      "gui": "Received-HK stack marks, watchdog stall flags and dropped-event counter; Mode stall test."
+      "gui": "Two-tab local console: packet-driven mode/link/health/events and acknowledged commands on Main; charts, received-HK task health and captured-packet inspector in Diagnostics. Mode-dependent freshness, confirmed SET_MODE and a separate TEST injection section. Flight-owned first-HK readiness (no automatic commands), four health cards and single-line events; SAFE/NOMINAL/LOW_POWER packet decoding verified. Success-colored cleared faults and no-store local assets."
     }
   ],
   "tasks": [

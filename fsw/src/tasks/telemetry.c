@@ -58,9 +58,8 @@ void telemetry_task(void *argument)
     for (unsigned i = 1; i <= 6; ++i) health.stack_free[i] = UINT16_MAX;
     Injection injection = {0};
     (void)xQueueReceive(c->state, &state, 0);
-    KestrelPacket hk = housekeeping(c, accepted, rejected, &state, &health);
-    Datagram first = serialize(c, &sequences, &hk);
-    send_control(c, &first, &injection);
+    KestrelPacket hk;
+    bool hk_started = false;
     uint64_t deadline = elapsed(c) + 10000, att_deadline = elapsed(c) + 1000;
     for (;;) {
         if (!ready(c, 4, &injection)) continue;
@@ -73,8 +72,20 @@ void telemetry_task(void *argument)
             if (changed) att_deadline = elapsed(c) + 1000;
             state = update;
         }
+        /* First HK must describe a real sensor sample. Keep servicing commands
+         * and check-ins while waiting; a failed sensor cannot wedge Telemetry. */
+        if (!hk_started && sensor_fresh(c, &state)) {
+            hk = housekeeping(c, accepted, rejected, &state, &health);
+            Datagram first = serialize(c, &sequences, &hk);
+            send_control(c, &first, &injection);
+            hk_started = true;
+            deadline = elapsed(c) + hk_period(&state);
+            changed = false;
+        }
+        /* Normally HK precedes the boot event. After the sensor freshness
+         * deadline, allow fault events through even if no valid sample arrived. */
         /* Bound event work; a fault history must not starve command ACKs. */
-        for (unsigned i = 0; i < BATCH; ++i) {
+        for (unsigned i = 0; i < BATCH && (hk_started || elapsed(c) >= 500); ++i) {
             Event event;
             if (xQueueReceive(c->events, &event, 0) != pdPASS) break;
             KestrelPacket packet = {.apid = KESTREL_APID_EVENT, .time_ms = event.at};
@@ -93,7 +104,7 @@ void telemetry_task(void *argument)
             send_control(c, &out, &injection);
             request_hk = decision.request_hk;
         }
-        if (request_hk || changed) {
+        if (hk_started && (request_hk || changed)) {
             hk = housekeeping(c, accepted, rejected, &state, &health);
             Datagram out = serialize(c, &sequences, &hk);
             send_control(c, &out, &injection);
@@ -110,7 +121,7 @@ void telemetry_task(void *argument)
             att_deadline += 1000;
             if (att_deadline <= elapsed(c)) att_deadline = elapsed(c) + 1000;
         }
-        if (elapsed(c) >= deadline) {
+        if (hk_started && elapsed(c) >= deadline) {
             if (uxQueueSpacesAvailable(c->periodic) > 0) {
                 hk = housekeeping(c, accepted, rejected, &state, &health);
                 Datagram out = serialize(c, &sequences, &hk);

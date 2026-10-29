@@ -60,6 +60,47 @@ class GroundTests(unittest.TestCase):
                 with self.assertRaises(ValueError):
                     link.command('set_mode')
 
+    def test_live_hk_fields_safe_nominal_low_power(self):
+        controller=FlightController(BINARY,available_port(),available_port())
+        try:
+            controller.start(test_build=True)
+            first=controller.snapshot()
+            fields=first['hk']['packet']['fields']
+            self.assertEqual(fields['mode'],1)
+            self.assertEqual(fields['battery_percent'],80)
+            self.assertEqual(fields['temperature_centi_c'],2000)
+            self.assertEqual(fields['accepted'],0)
+            self.assertEqual(fields['rejected'],0)
+            self.assertEqual(first['history'],[])
+            self.assertFalse(any(e['direction']=='tx' for e in first['events']))
+            time.sleep(1.1)
+            def fresh_hk(mode,battery):
+                previous=controller.snapshot()['hk']['packet']['sequence']
+                self.assertEqual(controller.command('request_hk')['status'],'OK')
+                deadline=time.monotonic()+2
+                while time.monotonic()<deadline:
+                    snapshot=controller.snapshot()
+                    packet=snapshot['hk']['packet']
+                    fields=packet['fields']
+                    if packet['sequence']!=previous and fields['mode']==mode and fields['battery_percent']==battery:
+                        break
+                    time.sleep(.01)
+                self.assertEqual(fields['mode'],mode)
+                self.assertEqual(fields['battery_percent'],battery)
+                self.assertEqual(fields['temperature_centi_c'],2000)
+                self.assertGreaterEqual(fields['uptime_s'],1)
+                self.assertGreaterEqual(packet['time_ms'],1000)
+                raw=next(e['hex'] for e in reversed(snapshot['events']) if e['label']=='HK' and e['sequence']==packet['sequence'])
+                self.assertEqual(decode(bytes.fromhex(raw)).fields,fields)
+            fresh_hk(1,80)
+            self.assertEqual(controller.command('set_mode',2)['status'],'OK')
+            fresh_hk(2,80)
+            self.assertEqual(controller.command('inject_fault',5)['status'],'OK')
+            time.sleep(.3)
+            fresh_hk(3,15)
+        finally:
+            controller.stop()
+
     def test_http_real_session_security_and_owned_cleanup(self):
         with tempfile.TemporaryDirectory() as directory:
             server=DashboardServer(0,Path(directory),[],Path(directory)/'missing',{},BINARY)
