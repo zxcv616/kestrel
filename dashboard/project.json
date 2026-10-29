@@ -3,8 +3,8 @@
   "subtitle": "CubeSat flight software",
   "currentMilestone": "M7",
   "hostedCI": {
-    "status": "pending",
-    "detail": "Final public-release revision awaiting fresh GitHub Debug/Release results; earlier baseline passed."
+    "status": "passed",
+    "detail": "GitHub Debug and Release each passed all 32 CTest entries, 7 scenarios, cppcheck and source-bound trace. Public-release run: https://github.com/zxcv616/kestrel/actions/runs/40801095231 (08859da). Check Actions for later commits."
   },
   "milestones": [
     {
@@ -80,15 +80,15 @@
     {
       "id": "M5",
       "name": "Verified release",
-      "state": "active",
-      "summary": "Local release verification, recorded mission playback and evidence exports.",
+      "state": "complete",
+      "summary": "Public MVP release with hosted verification, concise documentation and a live demo GIF.",
       "deliverables": [
         "All 20 requirements verified",
         "Production / test build checks",
         "Recorded mission demo",
         "Release documentation"
       ],
-      "gate": "All 20 clarified requirements pass locally. Public-release preparation includes the 30-second live GIF and updated README; final hosted verification and public visibility are pending.",
+      "gate": "All 20 clarified requirements, hosted fresh-checkout Debug/Release CI and source-bound reports pass. Repository is public and the 30-second live demo GIF is included.",
       "gui": "Main and Diagnostics console; a separate 30-second live GIF demonstrates boot, Command-stall protection and operator recovery. Recorded playback source remains archived."
     },
     {

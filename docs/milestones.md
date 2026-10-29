@@ -1,8 +1,10 @@
 # Delivery milestones
 
-M0 implementation is present; see [verification](m0-verification.md) for checks
-actually executed and the hosted-CI limitation. M1 packet codecs are verified; see [M1 evidence](m1-verification.md). M2 ground-link evidence is recorded in [M2 verification](m2-verification.md). M3 flight modes are implemented; see [M3 evidence](m3-verification.md). M4 fault recovery is implemented; see [M4 evidence](m4-verification.md). M6 live scenarios extend the laptop simulator. M5 local release evidence is implemented; hosted CI and private Git-checkout reproduction now pass; public release remains pending. A milestone is
-complete only when its acceptance evidence exists, not when code is merely added.
+M0–M5 are complete against the clarified simulator baseline. M6 live scenarios
+and M7 hardening are also delivered. The repository is public at
+https://github.com/zxcv616/kestrel, with a 30-second live demo GIF and hosted
+Debug/Release verification. The [README](../README.md) is the release entry point;
+earlier milestone verification files retain their historical results.
 
 | Milestone | Delivery | Acceptance |
 | --- | --- | --- |
@@ -16,18 +18,19 @@ complete only when its acceptance evidence exists, not when code is merely added
 
 ## M5 release status
 
-Static-memory, queue-ownership, production/test separation and warning/static-analysis
-inspections are recorded. The ground station demo, playback and verification
-bundle are implemented. Local verification is documented in [M5 evidence](m5-verification.md).
-Hosted Debug/Release CI and fresh private Git-checkout reproduction pass at
-https://github.com/zxcv616/kestrel. M5 remains active for the original public-release
-and demo-GIF deliverables; public visibility has not been requested.
+Complete. All 20 clarified requirements pass. The public repository includes the
+README, architecture, traceability table, known limitations and a real 30-second
+[demo GIF](assets/kestrel-demo.gif). GitHub Actions runs build, 32 CTest entries,
+seven scenarios, cppcheck and source-bound trace on every push/PR in Debug and
+Release. The public-release code passed in [run 40801095231](https://github.com/zxcv616/kestrel/actions/runs/40801095231).
 
-Every milestone includes its GUI capability. The user chose further laptop simulation after the MVP; hardware is deferred.
+Gitleaks 8.30.1 scanned the release working tree and all Git history before the
+visibility change; both reported no leaks. The hosted progress site was not
+published or updated. Hardware remains deferred by user choice.
 
 ## Hardening follow-on (M7)
 
 Modular tasks and UDP HAL, stack checking/marks in HK, independently visible Mode
 stall detection, ATT purge, dropped-event HK and source-bound GitHub Actions.
-The private repository is zxcv616/kestrel; its hosted result is tracked separately
-from local evidence. Public visibility and a demo GIF remain separate release work.
+The public repository is zxcv616/kestrel; hosted results remain separate from
+local evidence. M5 publication and demo deliverables are complete.
