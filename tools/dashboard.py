@@ -295,21 +295,25 @@ class Handler(SimpleHTTPRequestHandler):
             if not self.server.run_lock.acquire(blocking=False):
                 return self.json_response(409, {"error": "An operation is already running."})
             try:
-                return self.json_response(200, flight_actions[self.path]())
+                status, result = 200, flight_actions[self.path]()
             except (ValueError, OSError, RuntimeError) as error:
-                return self.json_response(409, {"error": str(error)})
+                status, result = 409, {"error": str(error)}
             finally:
                 self.server.run_lock.release()
+            # The operation is complete before its response becomes observable.
+            # A client may send its next command as soon as it reads this body.
+            return self.json_response(status, result)
         if not self.server.run_lock.acquire(blocking=False):
             return self.json_response(409, {"error": "A demonstration is already running."})
         try:
             result = run_demo(self.server.binary)
             self.server.snapshot["demo"] = result
-            self.json_response(200, result)
+            status = 200
         except (ValueError, OSError, RuntimeError, subprocess.TimeoutExpired) as error:
-            self.json_response(500, {"error": str(error)})
+            status, result = 500, {"error": str(error)}
         finally:
             self.server.run_lock.release()
+        self.json_response(status, result)
 
 
 def main():

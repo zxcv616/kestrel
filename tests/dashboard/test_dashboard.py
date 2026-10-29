@@ -97,6 +97,28 @@ class LocalServerTests(unittest.TestCase):
         self.server.server_close()
         self.thread.join()
 
+    def test_next_command_can_start_after_response_before_handler_returns(self):
+        response_sent, finish_handler = threading.Event(), threading.Event()
+        original = dashboard.Handler.json_response
+        def delayed_return(handler, status, value):
+            original(handler, status, value)
+            if handler.path == "/api/flight/noop" and status == 200:
+                response_sent.set()
+                finish_handler.wait(3)
+        def post(action):
+            req = Request(self.url + "/api/flight/" + action, method="POST", headers={
+                "Origin": self.url, "X-Kestrel-Token": self.server.token})
+            with urlopen(req, timeout=2) as response:
+                return json.load(response)
+        with patch.object(dashboard.Handler, "json_response", delayed_return), patch.object(
+                self.server.flight, "command", return_value={"status": "OK"}):
+            try:
+                self.assertEqual(post("noop")["status"], "OK")
+                self.assertTrue(response_sent.wait(1))
+                self.assertEqual(post("request_hk")["status"], "OK")
+            finally:
+                finish_handler.set()
+
     def test_static_assets_are_not_cached(self):
         for name in ("index.html", "app.js", "style.css", "mark.svg"):
             (Path(self.temp.name) / name).write_text("test asset")
